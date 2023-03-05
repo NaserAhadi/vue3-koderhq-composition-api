@@ -57,7 +57,7 @@ export default {
     watch(message, (newValue, oldValue) => {
       console.log('newValue', newValue)
       console.log('oldValue', oldValue)
-    })
+    }, {immediate: true})
 
     return {
       greeting, 
