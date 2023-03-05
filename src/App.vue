@@ -1,15 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <p>{{ greetingMsg }} {{ greetingUser }}</p> -->
+  <p>{{ greeting }}</p>
+  <p><button @click="newGreetingOne">Regular Function</button></p>
+  <p><button @click="newGreetingTwo">Anonymous Function</button></p>
+  <p><button @click="newGreetingThree">Arrow Function</button></p>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {ref} from 'vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // HelloWorld
+  },
+  setup(){
+    // console.log('setup');
+    // const greeting = ref({msg: 'hello', user: 'john'})
+    const greeting = ref('hello world')
+    // setTimeout(() => {
+    //   // change ref value
+    //   greeting.value.msg = 'greetings'
+    //   greeting.value.user = 'Naser'
+    // }, 3000)
+    function newGreetingOne() {
+      greeting.value = 'hello regular function'
+    }
+
+    const newGreetingTwo = function(){
+      greeting.value = 'hello anonymous function'
+    }
+
+    const newGreetingThree = () => {greeting.value = 'hello arrow function'}
+
+    return {greeting, newGreetingOne, newGreetingTwo, newGreetingThree}
+  },
+  created(){
+    // console.log('created');
+  },
+  mounted(){
+    // console.log('mounted');
   }
 }
 </script>
