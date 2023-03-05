@@ -10,10 +10,12 @@
   <p>Hello {{ user.firstName }} {{ user.lastName }}</p>
   <input type="text" placeholder="first-name" v-model="user.firstName"/>
   <input type="text" placeholder="last-name" v-model="user.lastName"/> 
+  <p>message is  here: {{ message }}</p>
+  <input type="text" placeholder="message" v-model="message"/>
 </template>
 
 <script>
-import {ref,computed} from 'vue'
+import {ref,computed, watch} from 'vue'
 
 export default {
   name: 'App',
@@ -49,6 +51,14 @@ export default {
     const greeting = computed(() => {
       return `Hello Dear ${user.value.firstName} ${user.value.lastName}`
     })
+
+    const message = ref('')
+
+    watch(message, (newValue, oldValue) => {
+      console.log('newValue', newValue)
+      console.log('oldValue', oldValue)
+    })
+
     return {
       greeting, 
       // newGreetingOne, 
@@ -56,7 +66,8 @@ export default {
       // newGreetingThree
       user,
       setFirstName,
-      setLastName
+      setLastName,
+      message
     }
   },
   created(){
