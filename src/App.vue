@@ -4,9 +4,12 @@
   <!-- <p><button @click="newGreetingOne">Regular Function</button></p>
   <p><button @click="newGreetingTwo">Anonymous Function</button></p>
   <p><button @click="newGreetingThree">Arrow Function</button></p> -->
-  <p>{{ greeting }}</p>
+  <!-- <p>{{ greeting }}</p>
   <input type="text" placeholder="first-name" @input="setFirstName"/>
-  <input type="text" placeholder="las-name" @input="setLastName"/> 
+  <input type="text" placeholder="las-name" @input="setLastName"/>  -->
+  <p>Hello {{ user.firstName }} {{ user.lastName }}</p>
+  <input type="text" placeholder="first-name" v-model="user.firstName"/>
+  <input type="text" placeholder="last-name" v-model="user.lastName"/> 
 </template>
 
 <script>
