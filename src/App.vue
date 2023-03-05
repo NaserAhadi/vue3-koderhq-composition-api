@@ -1,13 +1,16 @@
 <template>
   <!-- <p>{{ greetingMsg }} {{ greetingUser }}</p> -->
-  <p>{{ greeting }}</p>
-  <p><button @click="newGreetingOne">Regular Function</button></p>
+  <!-- <p>{{ greeting }}</p> -->
+  <!-- <p><button @click="newGreetingOne">Regular Function</button></p>
   <p><button @click="newGreetingTwo">Anonymous Function</button></p>
-  <p><button @click="newGreetingThree">Arrow Function</button></p>
+  <p><button @click="newGreetingThree">Arrow Function</button></p> -->
+  <p>{{ greeting }}</p>
+  <input type="text" placeholder="first-name" @input="setFirstName"/>
+  <input type="text" placeholder="las-name" @input="setLastName"/> 
 </template>
 
 <script>
-import {ref} from 'vue'
+import {ref,computed} from 'vue'
 
 export default {
   name: 'App',
@@ -17,23 +20,41 @@ export default {
   setup(){
     // console.log('setup');
     // const greeting = ref({msg: 'hello', user: 'john'})
-    const greeting = ref('hello world')
+    // const greeting = ref('hello world')
     // setTimeout(() => {
     //   // change ref value
     //   greeting.value.msg = 'greetings'
     //   greeting.value.user = 'Naser'
     // }, 3000)
-    function newGreetingOne() {
-      greeting.value = 'hello regular function'
+    // function newGreetingOne() {
+    //   greeting.value = 'hello regular function'
+    // }
+
+    // const newGreetingTwo = function(){
+    //   greeting.value = 'hello anonymous function'
+    // }
+
+    // const newGreetingThree = () => {greeting.value = 'hello arrow function'}
+    const user = ref({firstName:'', lastName:''})
+    function setFirstName($event){
+      user.value.firstName = $event.target.value
     }
 
-    const newGreetingTwo = function(){
-      greeting.value = 'hello anonymous function'
+    function setLastName($event){
+      user.value.lastName = $event.target.value
     }
-
-    const newGreetingThree = () => {greeting.value = 'hello arrow function'}
-
-    return {greeting, newGreetingOne, newGreetingTwo, newGreetingThree}
+    const greeting = computed(() => {
+      return `Hello Dear ${user.value.firstName} ${user.value.lastName}`
+    })
+    return {
+      greeting, 
+      // newGreetingOne, 
+      // newGreetingTwo, 
+      // newGreetingThree
+      user,
+      setFirstName,
+      setLastName
+    }
   },
   created(){
     // console.log('created');
