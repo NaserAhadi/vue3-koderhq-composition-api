@@ -1,6 +1,7 @@
 <template>
   <p v-if="!fullName.length>1">here is Greeting!</p>
   <p v-else>hello => {{ fullName }}</p><br>
+  <button @click="toggleMenuFromChild">toggle menu from child</button>
 </template>
 
 <script>
@@ -18,12 +19,16 @@ export default {
       default: ''
     }
   },
-  setup(props){
+  setup(props,context){
     const fullName = computed(() => {
       return `${props.firstName} ${props.lastName}`
     })
 
-    return {fullName}
+    function toggleMenuFromChild(){
+      context.emit('toggleMenu')
+    }
+
+    return {fullName, toggleMenuFromChild}
   }
 }
 </script>

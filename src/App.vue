@@ -7,14 +7,19 @@
   <!-- <p>{{ greeting }}</p>
   <input type="text" placeholder="first-name" @input="setFirstName"/>
   <input type="text" placeholder="las-name" @input="setLastName"/>  -->
-  <GreetingMessage :first-name="user.firstName" :last-name="user.lastName"/>
+  <GreetingMessage :first-name="user.firstName" :last-name="user.lastName" @toggleMenu="toggleShowMenu"/>
 
   <p>Hello {{ user.firstName }} {{ user.lastName }}</p>
   <input type="text" placeholder="first-name" v-model="user.firstName"/>
   <input type="text" placeholder="last-name" v-model="user.lastName"/> 
   <p>message is  here: {{ message }}</p>
-  <input type="text" placeholder="message" v-model="message"/>
+  <input type="text" placeholder="message" v-model="message"/><br>
 
+  <ul v-show="isShowMenu">
+    <li>vue</li>
+    <li>pwa</li>
+    <li>javascript</li>
+  </ul>
 </template>
 
 <script>
@@ -63,6 +68,12 @@ export default {
       console.log('oldValue', oldValue)
     }, {immediate: true})
 
+
+    const isShowMenu = ref(true)
+    function toggleShowMenu(){
+      isShowMenu.value =! isShowMenu.value
+    }
+
     return {
       greeting, 
       // newGreetingOne, 
@@ -71,7 +82,9 @@ export default {
       user,
       setFirstName,
       setLastName,
-      message
+      message,
+      isShowMenu,
+      toggleShowMenu
     }
   },
   created(){
