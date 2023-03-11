@@ -7,20 +7,24 @@
   <!-- <p>{{ greeting }}</p>
   <input type="text" placeholder="first-name" @input="setFirstName"/>
   <input type="text" placeholder="las-name" @input="setLastName"/>  -->
+  <GreetingMessage :first-name="user.firstName" :last-name="user.lastName"/>
+
   <p>Hello {{ user.firstName }} {{ user.lastName }}</p>
   <input type="text" placeholder="first-name" v-model="user.firstName"/>
   <input type="text" placeholder="last-name" v-model="user.lastName"/> 
   <p>message is  here: {{ message }}</p>
   <input type="text" placeholder="message" v-model="message"/>
+
 </template>
 
 <script>
 import {ref,computed, watch} from 'vue'
+import GreetingMessage from './components/GreetingMessage.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
+    GreetingMessage
   },
   setup(){
     // console.log('setup');
