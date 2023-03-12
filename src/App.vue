@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {ref,computed, watch} from 'vue'
+import {ref,computed, watch, provide} from 'vue'
 import GreetingMessage from './components/GreetingMessage.vue'
 
 export default {
@@ -73,6 +73,8 @@ export default {
     function toggleShowMenu(){
       isShowMenu.value =! isShowMenu.value
     }
+
+    provide('username', 'NaserAhadi')
 
     return {
       greeting, 

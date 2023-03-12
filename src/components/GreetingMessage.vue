@@ -2,10 +2,11 @@
   <p v-if="!fullName.length>1">here is Greeting!</p>
   <p v-else>hello => {{ fullName }}</p><br>
   <button @click="toggleMenuFromChild">toggle menu from child</button>
+  <p>here is injected item: {{ uName }}</p>
 </template>
 
 <script>
-import {computed} from 'vue'
+import {computed, inject} from 'vue'
 
 export default {
   name: 'GreetingMessage',
@@ -19,6 +20,7 @@ export default {
       default: ''
     }
   },
+  emits:['toggleMenu'],
   setup(props,context){
     const fullName = computed(() => {
       return `${props.firstName} ${props.lastName}`
@@ -28,7 +30,8 @@ export default {
       context.emit('toggleMenu')
     }
 
-    return {fullName, toggleMenuFromChild}
+    const uName= inject('username')
+    return {fullName, toggleMenuFromChild, uName}
   }
 }
 </script>
